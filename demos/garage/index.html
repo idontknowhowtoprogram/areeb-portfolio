@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Garage Service Estimator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans p-6">
+    <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+      <h1 class="text-2xl font-bold mb-4">Garage Service Estimator</h1>
+
+      <label class="block mb-2">Select Your Car:</label>
+      <select id="car" class="w-full p-2 border rounded mb-4">
+        <option value="toyota">Toyota</option>
+        <option value="nissan">Nissan</option>
+        <option value="bmw">BMW</option>
+      </select>
+
+      <label class="block mb-2">Select Services:</label>
+      <div class="mb-4">
+        <label class="block"
+          ><input type="checkbox" value="oil" /> Oil Change</label
+        >
+        <label class="block"
+          ><input type="checkbox" value="ac" /> AC Check</label
+        >
+        <label class="block"
+          ><input type="checkbox" value="brake" /> Brake Inspection</label
+        >
+      </div>
+
+      <button
+        onclick="calculateEstimate()"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
+        Get Estimate
+      </button>
+
+      <div id="result" class="mt-4 font-semibold"></div>
+    </div>
+
+    <script>
+      function calculateEstimate() {
+        const prices = {
+          oil: 100,
+          ac: 150,
+          brake: 120,
+        };
+
+        const times = {
+          oil: 30,
+          ac: 45,
+          brake: 40,
+        };
+
+        const checkboxes = document.querySelectorAll(
+          'input[type="checkbox"]:checked'
+        );
+        let total = 0,
+          time = 0;
+
+        checkboxes.forEach((cb) => {
+          total += prices[cb.value];
+          time += times[cb.value];
+        });
+
+        document.getElementById(
+          "result"
+        ).innerText = `Estimated Cost: AED ${total} | Time: ~${time} mins`;
+      }
+    </script>
+  </body>
+</html>
