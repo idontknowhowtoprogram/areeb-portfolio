@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Garage Service Estimator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100 text-gray-800 font-sans p-6">
+  <body class="bg-gray-100 font-sans p-6">
     <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
       <h1 class="text-2xl font-bold mb-4">Garage Service Estimator</h1>
 
@@ -18,56 +18,111 @@
       </select>
 
       <label class="block mb-2">Select Services:</label>
-      <div class="mb-4">
-        <label class="block"
-          ><input type="checkbox" value="oil" /> Oil Change</label
+      <div id="services" class="mb-4 space-y-1">
+        <label
+          ><input type="checkbox" value="oil" class="mr-2" /> Oil Change</label
         >
-        <label class="block"
-          ><input type="checkbox" value="ac" /> AC Check</label
+        <label
+          ><input type="checkbox" value="ac" class="mr-2" /> AC Check</label
         >
-        <label class="block"
-          ><input type="checkbox" value="brake" /> Brake Inspection</label
+        <label
+          ><input type="checkbox" value="brake" class="mr-2" /> Brake
+          Inspection</label
         >
       </div>
 
-      <button
-        onclick="calculateEstimate()"
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Get Estimate
-      </button>
+      <div class="flex space-x-2">
+        <button
+          onclick="calculateEstimate()"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Get Estimate
+        </button>
+        <button
+          onclick="resetForm()"
+          class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+        >
+          Reset
+        </button>
+      </div>
 
-      <div id="result" class="mt-4 font-semibold"></div>
+      <div id="result" class="mt-4 font-semibold min-h-[48px]"></div>
+
+      <button
+        id="whatsappBtn"
+        class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 hidden"
+        onclick="sendWhatsApp()"
+      >
+        Send Estimate on WhatsApp
+      </button>
     </div>
 
     <script>
+      const prices = {
+        oil: 100,
+        ac: 150,
+        brake: 120,
+      };
+
+      const times = {
+        oil: 30,
+        ac: 45,
+        brake: 40,
+      };
+
       function calculateEstimate() {
-        const prices = {
-          oil: 100,
-          ac: 150,
-          brake: 120,
-        };
-
-        const times = {
-          oil: 30,
-          ac: 45,
-          brake: 40,
-        };
-
         const checkboxes = document.querySelectorAll(
-          'input[type="checkbox"]:checked'
+          '#services input[type="checkbox"]:checked'
         );
-        let total = 0,
-          time = 0;
+        if (checkboxes.length === 0) {
+          document.getElementById("result").innerText =
+            "Please select at least one service.";
+          document.getElementById("whatsappBtn").classList.add("hidden");
+          return;
+        }
+
+        let totalCost = 0;
+        let totalTime = 0;
 
         checkboxes.forEach((cb) => {
-          total += prices[cb.value];
-          time += times[cb.value];
+          totalCost += prices[cb.value];
+          totalTime += times[cb.value];
         });
 
-        document.getElementById(
-          "result"
-        ).innerText = `Estimated Cost: AED ${total} | Time: ~${time} mins`;
+        const car = document.getElementById("car").value;
+
+        const message =
+          `Estimate for your ${car.charAt(0).toUpperCase() + car.slice(1)}:\n` +
+          `Services: ${Array.from(checkboxes)
+            .map((cb) => cb.parentElement.textContent.trim())
+            .join(", ")}\n` +
+          `Total Cost: AED ${totalCost}\n` +
+          `Estimated Time: ~${totalTime} mins`;
+
+        document.getElementById("result").innerText = message;
+        const whatsappBtn = document.getElementById("whatsappBtn");
+        whatsappBtn.classList.remove("hidden");
+        whatsappBtn.dataset.message = encodeURIComponent(message);
+      }
+
+      function resetForm() {
+        document.getElementById("car").selectedIndex = 0;
+        document
+          .querySelectorAll('#services input[type="checkbox"]')
+          .forEach((cb) => (cb.checked = false));
+        document.getElementById("result").innerText = "";
+        document.getElementById("whatsappBtn").classList.add("hidden");
+      }
+
+      function sendWhatsApp() {
+        const message = document.getElementById("whatsappBtn").dataset.message;
+        const phone = "971526286737"; // add your business phone here with country code, e.g. "971501234567"
+        if (!phone) {
+          alert("Please set your WhatsApp phone number in the script.");
+          return;
+        }
+        const url = `https://wa.me/${phone}?text=${message}`;
+        window.open(url, "_blank");
       }
     </script>
   </body>
