@@ -74,6 +74,64 @@
         background-color: #3b82f6;
         margin: 8px auto 0;
       }
+      /* Dark mode styles triggered by .dark-mode on body */
+
+      body.dark-mode section.skills-section {
+        background-color: #1f2937; /* dark gray */
+        color: #d1d5db; /* light gray */
+      }
+
+      body.dark-mode section.skills-section h2.section-title {
+        color: #ffffff; /* white */
+      }
+
+      body.dark-mode section.skills-section .card {
+        background-color: #374151; /* darker card bg */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      }
+
+      body.dark-mode section.skills-section .card h3 {
+        color: #60a5fa; /* blue-400 */
+      }
+
+      body.dark-mode section.skills-section .card ul li {
+        color: #d1d5db; /* light gray */
+      }
+      .project-card {
+        background: #fff;
+        border-radius: 0.75rem; /* rounded-lg */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-thumb {
+        width: 100%;
+        height: 12rem; /* 48 in Tailwind */
+        object-fit: cover;
+        object-position: center;
+      }
+
+      /* Optional: text container */
+      .project-card > div {
+        flex-grow: 1;
+      }
+
+      /* Mobile slider tweaks */
+      #slider {
+        scrollbar-width: none; /* Firefox */
+      }
+
+      #slider::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+      }
     </style>
   </head>
   <body class="bg-white text-gray-800" id="body">
@@ -98,8 +156,10 @@
         Technical Program Manager & Full Stack Web Developer
       </p>
       <p class="max-w-xl mx-auto text-gray-600 mb-6">
-        Experienced in scalable web applications, API integrations, Agile team
-        leadership, and cloud deployments (AWS, GCP).
+        Full Stack Developer & Project Manager with experience in scalable apps,
+        Agile workflows, REST APIs, and cloud platforms (AWS, GCP). Proven track
+        record delivering high-performance solutions across healthcare,
+        education, and fintech.
       </p>
       <div class="mt-8 flex flex-col md:flex-row justify-center gap-4">
         <a
@@ -119,10 +179,10 @@
     <section class="body-section">
       <!-- Professional Summary -->
       <section class="py-16 px-6 max-w-4xl mx-auto" data-aos="fade-up">
-        <h2 class="text-3xl font-bold text-center section-title mb-8">
+        <h2 class="text-3xl font-bold section-title mb-8 text-blue-900">
           Professional Summary
         </h2>
-        <p class="text-gray-700 leading-relaxed text-center">
+        <p class="text-gray-700 leading-relaxed">
           Project Manager and Full Stack Developer with expertise in delivering
           scalable applications and leading cross-functional teams. Skilled in
           Agile methodologies, API integration, ERP systems, cloud
@@ -132,38 +192,63 @@
           delivery.
         </p>
       </section>
-
-      <!-- Skills Section -->
-      <section class="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up">
-        <h2 class="text-3xl font-bold text-center section-title mb-12">
+      <section
+        class="skills-section py-16 px-6 max-w-6xl mx-auto"
+        data-aos="fade-up"
+      >
+        <h2
+          class="text-3xl font-bold text-center section-title mb-12 text-blue-900"
+        >
           Technical Skills
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div data-aos="fade-up">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Frontend Card -->
+          <div
+            class="card bg-white rounded-2xl shadow-md p-6"
+            data-aos="fade-up"
+          >
             <h3 class="text-xl font-semibold text-blue-600 mb-4">Frontend</h3>
-            <ul class="space-y-2 text-gray-700 list-disc list-inside">
-              <li>ReactJS, JavaScript, TypeScript</li>
-              <li>HTML, CSS, Tailwind CSS, Bootstrap</li>
+            <ul
+              class="space-y-2 text-gray-700 list-disc list-inside text-sm leading-relaxed"
+            >
+              <li>ReactJS, JavaScript (ES6+), TypeScript</li>
+              <li>HTML5, CSS3, Tailwind CSS, Bootstrap</li>
               <li>jQuery, AJAX</li>
             </ul>
           </div>
-          <div data-aos="fade-up" data-aos-delay="100">
+
+          <!-- Backend Card -->
+          <div
+            class="card bg-white rounded-2xl shadow-md p-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <h3 class="text-xl font-semibold text-blue-600 mb-4">Backend</h3>
-            <ul class="space-y-2 text-gray-700 list-disc list-inside">
-              <li>PHP, NodeJS, Laravel</li>
+            <ul
+              class="space-y-2 text-gray-700 list-disc list-inside text-sm leading-relaxed"
+            >
+              <li>Node.js, PHP, Laravel</li>
               <li>RESTful APIs, GraphQL</li>
               <li>MySQL, PostgreSQL, MongoDB, Firestore</li>
             </ul>
           </div>
-          <div data-aos="fade-up" data-aos-delay="200">
+
+          <!-- Tools & Platforms Card -->
+          <div
+            class="card bg-white rounded-2xl shadow-md p-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <h3 class="text-xl font-semibold text-blue-600 mb-4">
               Tools & Platforms
             </h3>
-            <ul class="space-y-2 text-gray-700 list-disc list-inside">
+            <ul
+              class="space-y-2 text-gray-700 list-disc list-inside text-sm leading-relaxed"
+            >
               <li>AWS (EC2, Lambda, S3), Google Cloud Platform</li>
-              <li>Docker, Kubernetes (EKS, GKE), CI/CD Pipelines</li>
-              <li>Git, WordPress Custom Themes, Magento2</li>
-              <li>Agile Methodologies, Jira</li>
+              <li>Docker, Kubernetes (EKS/GKE), CI/CD Workflows</li>
+              <li>Git, WordPress Custom Themes & Plugins, Headless CMS</li>
+              <li>Agile PM, Jira, GitHub Actions</li>
             </ul>
           </div>
         </div>
@@ -171,40 +256,53 @@
 
       <!-- Professional Experience -->
       <section class="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up">
-        <h2 class="text-3xl font-bold text-center section-title mb-12">
+        <h2
+          class="text-3xl font-bold text-center section-title mb-12 text-blue-900"
+        >
           Professional Experience
         </h2>
         <div class="space-y-10">
           <div data-aos="fade-up">
-            <h3 class="text-xl font-semibold">
-              Technical Project Manager – Blue Logic Digital (11/2024 – Present)
+            <h3 class="text-xl font-semibold text-blue-600">
+              Technical Project Manager – Blue Logic Digital (Nov 2024 –
+              Present)
             </h3>
             <p class="text-gray-700 mb-2">
-              Managed scalable app development for key clients including Daman
-              Insurance and Medcare Hospital. Led Agile teams and coordinated
-              sprint planning through Jira.
+              Spearheading development for high-impact web applications in
+              healthcare, including clients like Daman Insurance and Medcare
+              Hospital. Driving Agile delivery, cross-team coordination, and
+              cloud-native deployments.
             </p>
             <ul class="list-disc list-inside text-gray-700 space-y-1">
               <li>
-                Oversaw API integrations and testing, ensuring robust and secure
-                data exchange.
+                Leading end-to-end project execution with Agile methodologies,
+                overseeing sprint planning, Jira workflows, and progress
+                reporting.
               </li>
               <li>
-                Facilitated seamless deployments on AWS and other cloud
-                platforms.
+                Managing full-stack teams across Node.js, React, and AWS to
+                deliver scalable, secure web solutions integrated with external
+                APIs and ERP systems.
               </li>
               <li>
-                Acted as primary liaison between clients and development teams,
-                ensuring alignment on goals and deliverables.
+                Collaborating with QA, DevOps, and design to streamline release
+                cycles, CI/CD pipelines, and cloud infrastructure (AWS EC2, S3,
+                Lambda).
               </li>
               <li>
-                Fostered cross-team collaboration to integrate frontend and
-                backend systems effectively.
+                Acting as the key client-facing lead to gather requirements,
+                communicate technical trade-offs, and ensure on-time, on-budget
+                delivery.
+              </li>
+              <li>
+                Promoting team growth and code quality through peer reviews,
+                process optimization, and knowledge-sharing initiatives.
               </li>
             </ul>
           </div>
+
           <div data-aos="fade-up" data-aos-delay="100">
-            <h3 class="text-xl font-semibold">
+            <h3 class="text-xl font-semibold text-blue-600">
               Project Manager – Cognita Schools (Secondment, 06/2023 – 06/2024)
             </h3>
             <p class="text-gray-700 mb-2">
@@ -226,7 +324,7 @@
             </ul>
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
-            <h3 class="text-xl font-semibold">
+            <h3 class="text-xl font-semibold text-blue-600">
               Full Stack Developer – Blue Logic Digital (06/2021 – 11/2024)
             </h3>
             <p class="text-gray-700 mb-2">
@@ -260,7 +358,7 @@
             </ul>
           </div>
           <div data-aos="fade-up" data-aos-delay="300">
-            <h3 class="text-xl font-semibold">
+            <h3 class="text-xl font-semibold text-blue-600">
               Project Associate – Xenial Events (09/2020 – 05/2021)
             </h3>
             <p class="text-gray-700 mb-2">
@@ -280,7 +378,9 @@
 
       <!-- Education -->
       <section class="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up">
-        <h2 class="text-3xl font-bold text-center section-title mb-12">
+        <h2
+          class="text-3xl font-bold text-center section-title mb-12 text-blue-900"
+        >
           Education
         </h2>
         <ul class="space-y-4 text-gray-700 text-center">
@@ -294,106 +394,123 @@
           </li>
         </ul>
       </section>
-
-      <!-- Projects -->
       <section class="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up">
-        <h2 class="text-3xl font-bold text-center section-title mb-12">
+        <h2
+          class="text-3xl font-bold text-center section-title mb-12 text-blue-900"
+        >
           Selected Projects
         </h2>
 
         <!-- Grid container for desktop/tablet -->
         <div class="hidden md:grid md:grid-cols-3 md:gap-8">
-          <!-- <div class="p-4 border rounded" data-aos="fade-up">
-        <h3 class="text-xl font-semibold text-blue-700 mb-2">Medcare Hospital Patient Portal</h3>
-        <p class="text-gray-700">
-          Developed a patient portal web app enabling appointment booking, medical record access, and billing integration. Used React frontend with Laravel backend and AWS hosting.
-        </p>
-      </div> -->
-          <div
-            class="p-4 border rounded"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">
-              Daman Insurance Claims Automation
-            </h3>
-            <p class="text-gray-700">
-              Led the integration of claim processing APIs with Daman’s ERP
-              system, reducing manual processing time by 40%. Used PHP and
-              RESTful services with secure OAuth authentication.
-            </p>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <img
+              src="assets/daman-logo.png"
+              alt="Daman Insurance Claims Automation"
+              class="project-thumb rounded-t-lg object-contain w-full h-48"
+            />
+            <div class="p-4 bg-white rounded-b-lg shadow-md">
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Daman Insurance Claims Automation
+              </h3>
+              <p class="text-gray-700 text-sm">
+                Led the integration of claim processing APIs with Daman’s ERP
+                system, reducing manual processing time by 40%. Used PHP and
+                RESTful services with secure OAuth authentication.
+              </p>
+            </div>
           </div>
-          <div
-            class="p-4 border rounded"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">
-              Cognita Schools: HIS Dubai & Horizon School Dubai (HES)
-            </h3>
-            <p class="text-gray-700">
-              Delivered 4 multilingual, SEO optimized WordPress websites for
-              schools under Cognita’s UAE portfolio, including HIS Dubai and
-              Horizon School Dubai. Implemented Elementor Pro and custom ACF
-              fields to enable flexible content management, seamless
-              localization, and SEO best practices.
-            </p>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+            <img
+              src="assets/cognita-logo.png"
+              alt="Cognita Schools: HIS Dubai & Horizon School Dubai"
+              class="project-thumb rounded-t-lg object-contain w-full h-48"
+            />
+            <div class="p-4 bg-white rounded-b-lg shadow-md">
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Cognita Schools: HIS Dubai & Horizon School Dubai (HES)
+              </h3>
+              <p class="text-gray-700 text-sm">
+                Delivered 4 multilingual, SEO optimized WordPress websites for
+                schools under Cognita’s UAE portfolio, including HIS Dubai and
+                Horizon School Dubai. Implemented Elementor Pro and custom ACF
+                fields to enable flexible content management, seamless
+                localization, and SEO best practices.
+              </p>
+            </div>
           </div>
-          <div
-            class="p-4 border rounded"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">
-              Fidelity United Website
-            </h3>
-            <p class="text-gray-700">
-              Developed a fully custom WordPress site with tailored ACF
-              integrations and server configuration, collaborating closely with
-              the design team for pixel-perfect implementation.
-            </p>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+            <img
+              src="assets/fidelity-logo.png"
+              alt="Fidelity United Website"
+              class="project-thumb rounded-t-lg object-contain w-full h-48"
+            />
+            <div class="p-4 bg-white rounded-b-lg shadow-md">
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Fidelity United Website
+              </h3>
+              <p class="text-gray-700 text-sm">
+                Developed a fully custom WordPress site with tailored ACF
+                integrations and server configuration, collaborating closely
+                with the design team for pixel-perfect implementation.
+              </p>
+            </div>
           </div>
-          <div
-            class="p-4 border rounded"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">
-              HIS Dubai Website
-            </h3>
-            <p class="text-gray-700">
-              Built a responsive, custom CMS-driven site for HIS Dubai using ACF
-              custom fields and optimized server setups, ensuring fast load
-              times and scalable infrastructure.
-            </p>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+            <img
+              src="assets/cognita-logo.png"
+              alt="HIS Dubai Website"
+              class="project-thumb rounded-t-lg object-contain w-full h-48"
+            />
+            <div class="p-4 bg-white rounded-b-lg shadow-md">
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                HIS Dubai Website
+              </h3>
+              <p class="text-gray-700 text-sm">
+                Built a responsive, custom CMS-driven site for HIS Dubai using
+                ACF custom fields and optimized server setups, ensuring fast
+                load times and scalable infrastructure.
+              </p>
+            </div>
           </div>
-          <div
-            class="p-4 border rounded"
-            data-aos="fade-up"
-            data-aos-delay="600"
-          >
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">
-              Medica Group Website
-            </h3>
-            <p class="text-gray-700">
-              Spearheaded the development of a custom WordPress site with a
-              robust backend, server optimization, and close teamwork with
-              designers for a modern, clean user experience.
-            </p>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+            <img
+              src="assets/medica-logo.png"
+              alt="Medica Group Website"
+              class="project-thumb rounded-t-lg object-contain w-full h-48"
+            />
+            <div class="p-4 bg-white rounded-b-lg shadow-md">
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Medica Group Website
+              </h3>
+              <p class="text-gray-700 text-sm">
+                Spearheaded the development of a custom WordPress site with a
+                robust backend, server optimization, and close teamwork with
+                designers for a modern, clean user experience.
+              </p>
+            </div>
           </div>
-          <div
-            class="p-4 border rounded"
-            data-aos="fade-up"
-            data-aos-delay="700"
-          >
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">
-              Wellth Website
-            </h3>
-            <p class="text-gray-700">
-              Developed a custom WordPress site integrating ACF-based flexible
-              content modules and optimized server infrastructure, supporting
-              scalable updates and easy maintenance.
-            </p>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="700">
+            <img
+              src="assets/wellth-logo.png"
+              alt="Wellth Website"
+              class="project-thumb rounded-t-lg object-contain w-full h-48"
+            />
+            <div class="p-4 bg-white rounded-b-lg shadow-md">
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Wellth Website
+              </h3>
+              <p class="text-gray-700 text-sm">
+                Developed a custom WordPress site integrating ACF-based flexible
+                content modules and optimized server infrastructure, supporting
+                scalable updates and easy maintenance.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -403,38 +520,127 @@
             id="slider"
             class="overflow-x-auto flex space-x-6 snap-x snap-mandatory scroll-smooth scrollbar-hide"
           >
-            <!-- Each card -->
-            <div class="flex-none w-80 p-4 border rounded snap-center">
-              <h3 class="text-xl font-semibold text-blue-700 mb-2">
-                Medcare Hospital Patient Portal
-              </h3>
-              <p class="text-gray-700">
-                Developed a patient portal web app enabling appointment booking,
-                medical record access, and billing integration. Used React
-                frontend with Laravel backend and AWS hosting.
-              </p>
+            <!-- <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/"
+                alt="Medcare Hospital Patient Portal"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  Medcare Hospital Patient Portal
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Developed a patient portal web app enabling appointment
+                  booking, medical record access, and billing integration. Used
+                  React frontend with Laravel backend and AWS hosting.
+                </p>
+              </div>
+            </div> -->
+
+            <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/daman-logo.png"
+                alt="Daman Insurance Claims Automation"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  Daman Insurance Claims Automation
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Led the integration of claim processing APIs with Daman’s ERP
+                  system, reducing manual processing time by 40%. Used PHP and
+                  RESTful services with secure OAuth authentication.
+                </p>
+              </div>
             </div>
-            <div class="flex-none w-80 p-4 border rounded snap-center">
-              <h3 class="text-xl font-semibold text-blue-700 mb-2">
-                Daman Insurance Claims Automation
-              </h3>
-              <p class="text-gray-700">
-                Led the integration of claim processing APIs with Daman’s ERP
-                system, reducing manual processing time by 40%. Used PHP and
-                RESTful services with secure OAuth authentication.
-              </p>
+
+            <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/medica-logo.png"
+                alt="Cognita Schools: HIS Dubai & Horizon School Dubai"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  Medica Group Website
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Spearheaded the development of a custom WordPress site with a
+                  robust backend, server optimization, and close teamwork with
+                  designers for a modern, clean user experience.
+                </p>
+              </div>
             </div>
-            <div class="flex-none w-80 p-4 border rounded snap-center">
-              <h3 class="text-xl font-semibold text-blue-700 mb-2">
-                School Websites for Cognita
-              </h3>
-              <p class="text-gray-700">
-                Delivered six multilingual, SEO optimized WordPress websites for
-                schools under Cognita’s UAE portfolio. Implemented Elementor Pro
-                and custom ACF fields.
-              </p>
+            <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/cognita-logo.png"
+                alt="Cognita Schools: HIS Dubai & Horizon School Dubai"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  School Websites for Cognita
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Delivered six multilingual, SEO optimized WordPress websites
+                  for schools under Cognita’s UAE portfolio. Implemented
+                  Elementor Pro and custom ACF fields.
+                </p>
+              </div>
             </div>
-            <!-- Add the rest of the cards here similarly -->
+            <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/wellth-logo.png"
+                alt="Cognita Schools: HIS Dubai & Horizon School Dubai"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  Wellth Website
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Developed a custom WordPress site integrating ACF-based
+                  flexible content modules and optimized server infrastructure,
+                  supporting scalable updates and easy maintenance.
+                </p>
+              </div>
+            </div>
+            <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/cognita-logo.png"
+                alt="Cognita Schools: HIS Dubai & Horizon School Dubai"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  HIS Dubai Website
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Built a responsive, custom CMS-driven site for HIS Dubai using
+                  ACF custom fields and optimized server setups, ensuring fast
+                  load times and scalable infrastructure.
+                </p>
+              </div>
+            </div>
+            <div class="project-card flex-none w-80 snap-center">
+              <img
+                src="assets/fidelity-logo.png"
+                alt="Cognita Schools: HIS Dubai & Horizon School Dubai"
+                class="project-thumb rounded-t-lg object-contain w-full h-48"
+              />
+              <div class="p-4 bg-white rounded-b-lg shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                  Fidelity United Website
+                </h3>
+                <p class="text-gray-700 text-sm">
+                  Developed a fully custom WordPress site with tailored ACF
+                  integrations and server configuration, collaborating closely
+                  with the design team for pixel-perfect implementation.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -445,7 +651,9 @@
         class="py-16 px-6 max-w-4xl mx-auto"
         data-aos="fade-up"
       >
-        <h2 class="text-3xl font-bold text-center section-title mb-8">
+        <h2
+          class="text-3xl font-bold text-center section-title mb-8 text-blue-900"
+        >
           Contact Me
         </h2>
         <p class="text-center mb-6 text-gray-700">
